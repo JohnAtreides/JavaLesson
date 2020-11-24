@@ -6,6 +6,13 @@ public class Planete {
     int totalVisiteurs=0;
     Vaisseau vaisseauActuellementAcoste;
     Atmosphere atmosphere;
+    static String forme="Sphérique";
+    static int nbPlanetesDecouvertes=0;
+
+    Planete(String nom){
+        this.nom=nom;
+        System.out.println("Le nombre de planètes découvertes est actuellement de "+nbPlanetesDecouvertes);
+    }
 
 
     int revolution(int angle) {
@@ -25,5 +32,13 @@ public class Planete {
         Vaisseau vaisseauPrecedent = vaisseauActuellementAcoste;
         vaisseauActuellementAcoste = vaisseau;
         return vaisseauPrecedent;
+    }
+
+    static String expansion(double distance) {
+        if (distance < 14) {
+            return "Oh la la mais c'est super rapide";
+        } else {
+            return"Je rêve ou c'est plus rapide que la lumière ?";
+        }
     }
 }

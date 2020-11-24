@@ -1,65 +1,39 @@
 public class HelloWorld {
     public static void main(String... args){
 
-        Planete mercure=new Planete();
-        mercure.nom="mercure";
+        Planete mercure=new Planete("Mercure");
         mercure.matiere="Tellurique";
         mercure.diametre=4880;
 
-        Planete venus=new Planete();
-        venus.nom="venus";
+        Planete venus=new Planete("Venus");
         venus.matiere="Tellurique";
         venus.diametre=12100;
 
-        Planete terre=new Planete();
-        terre.nom="terre";
+        Planete terre=new Planete("Terre");
         terre.matiere="Tellurique";
         terre.diametre=12756;
 
-        Planete mars=new Planete();
-        mars.nom="mars";
+        Planete mars=new Planete("Mars");
         mars.matiere="Tellurique";
         mars.diametre=6792;
 
-        Planete jupiter=new Planete();
-        jupiter.nom="jupiter";
+        Planete jupiter=new Planete("Jupiter");
         jupiter.matiere="Gazeuse";
         jupiter.diametre=142984;
 
-        Planete saturne=new Planete();
-        saturne.nom="saturne";
+        Planete saturne=new Planete("Saturne");
         saturne.matiere="Gazeuse";
         saturne.diametre=120536;
 
-        Planete uranus=new Planete();
-        uranus.nom="uranus";
+        Planete uranus=new Planete("Uranus");
         uranus.matiere="Gazeuse";
         uranus.diametre=51118;
 
-        Planete neptune=new Planete();
-        neptune.nom="neptune";
+        Planete neptune=new Planete("Neptune");
         neptune.matiere="Gazeuse";
         neptune.diametre=49532;
 
         /*
-        System.out.println(jupiter.nom+" est une planete "+ jupiter.matiere+" avec un diamètre de "+ jupiter.diametre+" kilomètres.");
-
-        System.out.println(neptune.nom+" a effectué "+neptune.revolution(-3542)+" tours autour de son étoile");
-        System.out.println(mars.nom+" a effectué"+mars.revolution(-684)+" tours sur elle-même");
-        System.out.println(venus.nom+" a effectué "+venus.revolution(1250)+" tours sur elle-même");
-
-        System.out.println("Le nombre d'humains ayant déjà séjourné sur Mars est actuellement de "+mars.totalVisiteurs+".");
-
-        Atmosphere uranusAtmosphere=new Atmosphere();
-        uranusAtmosphere.hydrogene=83f;
-        uranusAtmosphere.helium=15f;
-        uranusAtmosphere.methane=2.5f;
-        uranus.atmosphere=uranusAtmosphere;
-
-        System.out.println("L'atmosphère d'Uranus est composé :");
-        System.out.println("A "+uranusAtmosphere.hydrogene+"% d'hydrogène");
-        */
-
         Vaisseau nouveauVaisseau = new Vaisseau();
         nouveauVaisseau.type="FREGATE";
         nouveauVaisseau.nbPassagers=9;
@@ -70,5 +44,30 @@ public class HelloWorld {
         mars.accueillirVaisseaux(autreVaisseau);
 
         System.out.println("Le nombre d'humains ayant déjà séjourné sur Mars est actuellement de "+mars.totalVisiteurs+".");
+
+        System.out.println("La forme d'une planète est : "+Planete.forme);
+
+        Planete.expansion(10.5);
+        */
+
+        VaisseauDeGuerre chasseur = new VaisseauDeGuerre();
+        chasseur.blindage=156;
+        chasseur.resistanceDuBouclier=2;
+
+        VaisseauCivil vaisseauMonde = new VaisseauCivil();
+        vaisseauMonde.blindage=4784;
+        vaisseauMonde.resistanceDuBouclier=30;
+
+        chasseur.activerBouclier();
+        vaisseauMonde.activerBouclier();
+
+        chasseur.attaque(vaisseauMonde, "lasers photoniques", 3);
+
+        vaisseauMonde.desactiverBouclier();
+
+        System.out.println("Protection résiduelle "+vaisseauMonde.resistanceDuBouclier);
+
+        System.out.println("Blindage "+vaisseauMonde.blindage);
+
     }
 }
