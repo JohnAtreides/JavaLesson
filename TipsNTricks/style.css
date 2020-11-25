@@ -1,0 +1,167 @@
+/* Eléments principaux de la page */
+
+#mainBloc {
+    margin: 4px 10px 10px 10px;
+    justify-content: center;   
+}
+
+/* paragraphs are 80% of the page content.
+Let's use a typo that's reader friendly
+(easier for dyslexic people) */
+p {
+    font-family: Tahoma;
+}
+
+a {
+    font-size: 90%;
+    color: blue;
+    text-decoration: none;
+}
+
+h2 {
+    border-radius: 70%;
+    text-align: center;
+    background-color: coral;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 150%;
+}
+
+h3 
+{
+    color : #711979;
+    text-align : center;
+}
+ 
+h3 img 
+{
+    border : 0;
+}
+
+h5 {
+    border-image: linear-gradient(red, blue) 27 / 35px;
+    text-align: left;
+    font-family: 'Arial', Times, serif;
+    font-size: 100%;
+    font-style: bold;
+}
+
+/* <-----------HEADER---------> */
+header {
+    background-image: url("images/coffeeWP.jpg");
+    height: 135px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 5px rgb(153, 102, 10) outset;
+    height: 130px;
+}
+
+#avocation {
+    color: rgb(245, 88, 39);
+    /* text-shadow: (horizontal)px (vertical)px (douceur du dégradé)px (shadow color); */
+    text-shadow: 5px 4px 2px black;
+    /* police, taille etc.. */
+    font-family: 'Candara';
+    font-size: 75px;
+    font-weight: 600;
+    padding-left: 100px;
+    text-align: center;
+}
+
+#byMe {
+    color: rgb(203, 130, 10);
+    text-shadow: -1px 0 black, 0 1px black,
+      1px 0 black, 0 -1px black;
+    font-family: 'Courier New', Courier, monospace, serif;
+    font-size: 35px;
+    font-style: italic;
+    font-weight: bold;
+    padding-right: 80px;
+    align-self: flex-end;
+}
+/* <--------- / HEADER--------> */
+
+/* <----------SECTION---------> */
+section {
+    /* aide pour visualiser les blocks : */
+    background-color: #fff;
+    border: 2px gray solid; 
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+	padding: 0 6px;
+}
+
+
+/* Navigation */
+nav ul
+{
+    display: flex;
+    margin: 50px 0 3px 0;
+    justify-content: flex-end; 
+    list-style-type: none;
+}
+
+nav li
+{
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+nav a
+{
+    color: rgb(203, 130, 10);
+    font-family: 'Courier New', Courier, monospace, serif;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-size: 1.3em;
+    font-weight: bold;
+    padding-bottom: 3px;
+    text-decoration: none;
+}
+
+nav a:hover
+{
+    color: rgb(245, 88, 39);
+    border-top: 3px solid rgb(203, 130, 10);
+    border-right: 3px solid rgb(203, 130, 10);
+    border-bottom: 2px solid rgb(245, 88, 39);
+    border-left: 3px solid rgb(203, 130, 10);
+}
+
+.orange-divider{
+    width: auto;
+    height: 2px;
+    background: rgb(245, 88, 39);
+    /*border: 1px black outset;*/
+    margin: 0 auto 20px;
+}
+
+
+
+
+/* <--------- / SECTION--------> */
+/*
+.intro {
+    background-color: #fff;
+}*/
+
+
+
+
+
+
+
+
+/* Définition des /font personnalisées */
+
+@font-face {
+    font-family: '3dumbregular';
+    src: url('/3Dumb-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+

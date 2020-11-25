@@ -1,39 +1,31 @@
 public class HelloWorld {
     public static void main(String... args){
 
-        Planete mercure=new Planete("Mercure");
-        mercure.matiere="Tellurique";
+        Planete mercure=new PlaneteTellurique("Mercure");
         mercure.diametre=4880;
 
-        Planete venus=new Planete("Venus");
-        venus.matiere="Tellurique";
+        Planete venus=new PlaneteTellurique("Venus");
         venus.diametre=12100;
 
-        Planete terre=new Planete("Terre");
-        terre.matiere="Tellurique";
+        Planete terre=new PlaneteTellurique("Terre");
         terre.diametre=12756;
 
-        Planete mars=new Planete("Mars");
-        mars.matiere="Tellurique";
+        PlaneteTellurique mars=new PlaneteTellurique("Mars");
         mars.diametre=6792;
 
-        Planete jupiter=new Planete("Jupiter");
-        jupiter.matiere="Gazeuse";
+        Planete jupiter=new PlaneteGazeuse("Jupiter");
         jupiter.diametre=142984;
 
-        Planete saturne=new Planete("Saturne");
-        saturne.matiere="Gazeuse";
+        Planete saturne=new PlaneteGazeuse("Saturne");
         saturne.diametre=120536;
 
-        Planete uranus=new Planete("Uranus");
-        uranus.matiere="Gazeuse";
+        Planete uranus=new PlaneteGazeuse("Uranus");
         uranus.diametre=51118;
 
-        Planete neptune=new Planete("Neptune");
-        neptune.matiere="Gazeuse";
+        Planete neptune=new PlaneteGazeuse("Neptune");
         neptune.diametre=49532;
 
-        /*
+
         Vaisseau nouveauVaisseau = new Vaisseau();
         nouveauVaisseau.type="FREGATE";
         nouveauVaisseau.nbPassagers=9;
@@ -47,8 +39,6 @@ public class HelloWorld {
 
         System.out.println("La forme d'une planète est : "+Planete.forme);
 
-        Planete.expansion(10.5);
-        */
 
         VaisseauDeGuerre chasseur = new VaisseauDeGuerre();
         chasseur.blindage=156;
