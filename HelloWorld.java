@@ -28,16 +28,23 @@ public class HelloWorld {
 
         Vaisseau chasseur = new VaisseauDeGuerre("CHASSEUR");
         chasseur.nbPassagers=9;
-        chasseur.blindage=4784;
-        chasseur.resistanceDuBouclier=30;
+        chasseur.blindage=156;
+        chasseur.resistanceDuBouclier=2;
 
-        Vaisseau vaisseauMonde = new VaisseauCivil();
+        Vaisseau vaisseauMonde = new VaisseauCivil("VAISSEAU-MONDE");
+        vaisseauMonde.blindage=4784;
+        vaisseauMonde.resistanceDuBouclier=30;
 
-        mars.accueillirVaisseaux(nouveauVaisseau);
+        vaisseauMonde.activerBouclier();
+        chasseur.activerBouclier();
+        ((VaisseauDeGuerre)chasseur).attaque(vaisseauMonde, "laser photonique", 3);
+        vaisseauMonde.desactiverBouclier();
 
-        Vaisseau autreVaisseau = new VaisseauDeGuerre("CROISEUR");;
-        autreVaisseau.nbPassagers=42;
-        mars.accueillirVaisseaux(autreVaisseau);
+        System.out.println("Le Vaisseau-Monde dispose encore de "+vaisseauMonde.resistanceDuBouclier+" minutes de protection grâce à son ouclier.");
+        System.out.println("Le Vaisseau-monde dispose encore d'un blindage de valeur "+vaisseauMonde.blindage+".");
+
+        mars.accueillirVaisseaux(vaisseauMonde);
+        mars.accueillirVaisseaux(chasseur);
 
         System.out.println("Le nombre d'humains ayant déjà séjourné sur Mars est actuellement de "+mars.totalVisiteurs+".");
 
@@ -47,19 +54,7 @@ public class HelloWorld {
 
 
 
-        vaisseauMonde.blindage=4784;
-        vaisseauMonde.resistanceDuBouclier=30;
 
-        chasseur.activerBouclier();
-        vaisseauMonde.activerBouclier();
-
-        ((VaisseauDeGuerre)chasseur).attaque(vaisseauMonde, "lasers photoniques", 3);
-
-        vaisseauMonde.desactiverBouclier();
-
-        System.out.println("Protection résiduelle "+vaisseauMonde.resistanceDuBouclier);
-
-        System.out.println("Blindage "+vaisseauMonde.blindage);
 
     }
 }
