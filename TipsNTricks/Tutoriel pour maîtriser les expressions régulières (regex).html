@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!-- saved from url=(0094)https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>
+                    Tutoriel pour maîtriser les expressions régulières (regex)
+        </title>
+    <meta name="description" content="    Les expressions régulières sont des outils de recherche puissants, utilisés dans de nombreux langages de programmation, mais difficiles à prendre en main.
+">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:url" content="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres">
+    <meta property="og:title" content="            Tutoriel pour maîtriser les expressions régulières (regex)
+    ">
+    <meta property="og:description" content="    Les expressions régulières sont des outils de recherche puissants, utilisés dans de nombreux langages de programmation, mais difficiles à prendre en main.
+">
+    <meta property="og:site_name" content="Lucas Willems">
+    <meta property="og:type" content="article">
+
+    <meta property="article:author" content="https://www.facebook.com/lcswillems">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@lcswillems">
+    <meta name="twitter:creator" content="@lcswillems">
+    <link rel="canonical" href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres">
+    <link rel="author" href="https://plus.google.com/+LcsWillems/">
+
+        <meta property="og:image" content="https://www.lucaswillems.com/img/ants/sections/.png">
+
+    <meta name="google-site-verification" content="C4xyWNa9fCoYT0cv3P4PXICtd9xYIPHxyIDW_hYfWyw">
+    <meta name="msvalidate.01" content="6EE75FB60A403A1CD8A34AD0E6A6A69E">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://www.lucaswillems.com/img/favicon.ico">
+    <link rel="stylesheet" href="./Tutoriel pour maîtriser les expressions régulières (regex)_files/style-31abf52fd9.css">
+
+    <script src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/cb=gapi.loaded_1" async=""></script>
+    <script src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/cb=gapi.loaded_0" async=""></script>
+    <script type="text/javascript" charset="utf-8" async="" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/button.71000885400e222c3c0eec823f8f93f0.js.téléchargement"></script>
+    <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}</style>
+<style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.2a0be1cac62547aa91037395a06bf8b3.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.2b6a730d7d5eff80032e6b2e3ff8cab6.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.7ce8b2d11ecfa0aa9e0fdce994b52842.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><style type="text/css" data-fbcssmodules="css:fb.css.basecss:fb.css.dialog css:fb.css.iframewidget">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style><script src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/alfie_v4.63f1ab6d6b9d5807dc0c94ef3fe0b851.js.téléchargement" async="" charset="UTF-8"></script></head>
+<body><div id="MathJax_Message" style="display: none;"></div><div id="cookie-bar" class="fixed bottom"><p>We use cookies to track usage and preferences.<a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres" class="cb-enable">I Understand</a></p></div>
+<nav class="text-center">
+    <div id="selector" style="width: 91px; background-color: rgb(230, 126, 34); top: 12.0099px; left: 383.294px;"></div>
+                    <a href="https://www.lucaswillems.com/fr" class="home">Accueil</a>
+                    <a href="https://www.lucaswillems.com/fr/projects" class="projects">Projets</a>
+                    <a href="https://www.lucaswillems.com/fr/articles" class="articles active">Articles</a>
+                    <a href="https://www.lucaswillems.com/fr/tools" class="tools">Outils</a>
+                    <a href="https://www.lucaswillems.com/fr/about" class="about">A propos</a>
+                    <a href="https://www.lucaswillems.com/fr/contact" class="contact">Contact</a>
+    </nav>
+<header class="row">
+    <div class="cell">
+        <div class="float-left">
+            <div style="display:inline-block">
+                <div id="profile" class="show-for-medium">
+                    <a class="nivo" href="https://www.lucaswillems.com/img/lcswillems-400x400.png"><img src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/lcswillems-80x80.png" alt="Lucas Willems"></a>
+                </div>
+            </div>
+            <div id="info">
+                <h1><a href="https://www.lucaswillems.com/fr">LUCAS WILLEMS</a></h1>
+                <p>Un étudiant de 23 ans passionné par les maths et la programmation</p>
+            </div>
+        </div>
+    </div>
+    <div class="cell">
+        <div class="right">
+            <div id="language">
+                                    <a href="https://www.lucaswillems.com/en/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres"><img src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/flag-uk.png" title="English" alt="English"></a>
+                            </div>
+            <div style="display:inline-block">
+                <div id="social" class="show-for-medium">
+                    <div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div><div id="facebook" class="fb-like fb_iframe_widget" data-href="https://www.facebook.com/lcswillems" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=250534755060724&amp;container_width=140&amp;href=https%3A%2F%2Fwww.facebook.com%2Flcswillems&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=false&amp;show_faces=false"><span style="vertical-align: bottom; width: 90px; height: 28px;"><iframe name="f2381cbcc93d47" width="1000px" height="1000px" data-testid="fb:like Facebook Social Plugin" title="fb:like Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/like.html" style="border: none; visibility: visible; width: 90px; height: 28px;" class=""></iframe></span></div>
+                    <div id="twitter"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-follow-button twitter-follow-button-rendered" style="position: static; visibility: visible; width: 145px; height: 20px;" title="Twitter Follow Button" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/follow_button.fd774b599f565016d763dd860cb31c79.en.html" data-screen-name="lcswillems"></iframe></div>
+                    <div id="google"><div id="___follow_0" style="position: absolute; width: 450px; left: -10000px;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1606930911625" name="I0_1606930911625" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/follow.html"></iframe></div><div class="g-follow" data-annotation="bubble" data-height="20" data-href="//plus.google.com/u/0/114726487961139889638" data-rel="publisher" data-gapiscan="true" data-onload="true" data-gapistub="true"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<h1 id="main-title" class="row     dark
+">
+        <span>Tutoriel pour maîtriser les expressions régulières</span>
+</h1>
+<div class="row" id="articles-show">
+    
+    <div id="banner">
+        <div class="item" id="menu"><a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#title-arti" class="active">Article</a><a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#title-sear">Recherche</a><a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#title-opin">Commentaires</a></div>
+        <div class="item" id="share">
+			<div class="share"><iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 60px; height: 20px;" title="Twitter Tweet Button" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/tweet_button.fd774b599f565016d763dd860cb31c79.en.html"></iframe></div>
+			<div class="share"><div id="fb-root"></div><div class="fb-like fb_iframe_widget" data-layout="box_count" data-action="like" data-show-faces="false" data-share="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=250534755060724&amp;container_width=60&amp;href=https%3A%2F%2Fwww.lucaswillems.com%2Ffr%2Farticles%2F25%2Ftutoriel-pour-maitriser-les-expressions-regulieres&amp;layout=box_count&amp;locale=en_US&amp;sdk=joey&amp;share=false&amp;show_faces=false"><span style="vertical-align: bottom; width: 62px; height: 48px;"><iframe name="f37345c2ed2c924" width="1000px" height="1000px" data-testid="fb:like Facebook Social Plugin" title="fb:like Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/like(1).html" style="border: none; visibility: visible; width: 62px; height: 48px;" class=""></iframe></span></div></div>
+			<div class="share"><div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I1_1606930911632" name="I1_1606930911632" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/fastbutton.html"></iframe></div><div class="g-plusone" data-size="tall" data-gapiscan="true" data-onload="true" data-gapistub="true"></div></div>
+		</div>
+    </div>
+
+    
+
+    <div class="stripes"><h2 id="title-arti">Article</h2></div>
+    <div><p>Les expressions régulières, ou plus communément regex (contraction de <em>regular expression</em>) permettent de représenter des modèles de chaînes de caractère. Ce sont des outils très puissants et très utilisés : on peut les retrouver dans de nombreux langages comme le PHP, MySQL, Javascript... ou encore dans des logiciels d'édition de code ! Cependant, si cet outil est très puissant, il est relativement difficile à appréhender au début car les expressions régulières peuvent prendre des formes de ce genre :</p><pre class="prettyprint">#^[a-zA-Z-]+@[a-zA-Z-]+\.[a-zA-Z]{2,6}$#</pre><p>Cet expression régulière permettant, par exemple, de représenter toutes les adresses emails contenues dans un texte. Vous pouvez donc voir que la syntaxe est peu commune et qu'un petit tutoriel s'impose pour pouvoir comprendre et utiliser le concept des expressions régulières. Pour suivre ce tutoriel, il vous faudra utiliser un éditeur de code qui comprend les expressions régulières : si vous n'en avez pas encore un, vous pouvez télécharger et installer <a target="_blank" data-cke-saved-href="http://notepad-plus-plus.org/fr/" href="http://notepad-plus-plus.org/fr/">notepad++</a>.</p><div id="summary"><div id="summary-container"><div id="summary-title">Sommaire</div><div id="summary-content"><div class="summary-h2">1 <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#1">La limite des recherches classiques</a></div><div class="summary-h2">2 <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#2">Regex simple</a></div><div class="summary-h3">2.1 <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#2-1">Les caractères de début et fin de chaîne</a></div><div class="summary-h3">2.2 <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#2-2">Le caractères OU</a></div><div class="summary-h2">3 <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#3">Les ensembles de caractères</a></div><div class="summary-h3">3.1 <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#3-1">Les différents ensembles</a></div><div class="summary-h3">3.2 <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#3-2">Les ensembles préconçus</a></div><div class="summary-h2">4 <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#4">Les quantificateurs</a></div><div class="summary-h2">5 <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#5">L'échappement</a></div><div class="summary-h2">6 <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#6">Mise en pratique</a></div><div class="summary-h3">6.1 <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#6-1">Vérifier si un numéro de téléphone est correcte</a></div><div class="summary-h3">6.2 <a href="https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres#6-2">Détecter les liens et les rendre cliquable</a></div></div></div></div><h2 id="1">La limite des recherches classiques</h2><p>Pour commencer simplement, ouvrons notre éditeur de code et collons y le texte suivant :</p><blockquote>Bonjour et au revoir ! Je m'appelle John Doe, j'ai 27 ans, j'habite en France et travaille depuis que j'ai 20 ans. Ma passion : écrire des mots, mits, mets, mats, mat... Pour me contacter, vous pouvez envoyer un email à contact@johndoe.fr ou contact@johndoe.com ou bien m'appeler au 06 07 08 09 10. Vous pouvez aussi aller voir mon blog à l'adresse johndoe-blog.fr. Bonjour et au revoir</blockquote><p><img alt="" data-cke-saved-src="/public/upload/articles/25/regex-1.png" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/regex-1.png" style="width: 817px; height: 575px;"></p><p>Puis, recherchons y, en rendant la recherche sensible à la casse (voir image précédente), le mot <em>Bonjour</em>. La façon la plus simple est alors de faire un simple Ctrl+F comme on en a l'habitude : pas besoin d'utiliser les regex. Suite à cette recherche, les 2 occurrences de <em>Bonjour</em> devraient être sélectionné. Normal.</p><p>Maintenant, imaginons que nous voulons rechercher, cette fois-ci, seulement le mot&nbsp;<em>Bonjour</em>&nbsp;qui se trouve au tout début du texte. Comment faire avec un simple Ctrl+F ? Ce n'est tout simplement pas possible : voici donc la limite des recherches classiques. Pour faire des recherches plus complexes, il nous faudra utiliser les regex.</p><h2 id="2">Regex simple</h2><p>Reprenons notre recherche du mot&nbsp;<em>Bonjour&nbsp;</em>du début de texte, mais cette fois, en utilisant les regex, et plus particulièrement les caractères de début et fin de chaîne.</p><h3 id="2-1">Les caractères de début et fin de chaîne</h3><p>Les caractères de début et de fin de chaîne, respectivement ^ et $, représentent, comme leur nom l'indique, le début et la fin de la chaîne.&nbsp;Donc, si nous retournons dans notre éditeur de code, que nous faisons de nouveau Ctrl+F, que nous&nbsp;<strong>activons les expressions régulières</strong>&nbsp;au passage et que nous entrons dans le champ de recherche la regex suivante :</p><pre class="prettyprint">^Bonjour</pre><p><img alt="" data-cke-saved-src="/public/upload/articles/25/regex-2.png" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/regex-2.png" style="width: 817px; height: 575px;"></p><p>L'éditeur de code devrait sélectionner seulement le mot&nbsp;<em>Bonjour&nbsp;</em>se trouvant au début du texte. Et si nous remplaçons la regex que nous venons d'entrer par celle-ci :</p><pre class="prettyprint">revoir$</pre><p>L'éditeur de code devrait sélectionner seulement le mot&nbsp;<em>revoir</em> qui se situe à la fin du texte.</p><h3 id="2-2">Le caractères OU</h3><p>Imaginons maintenant que nous voulons rechercher, dans le texte, les mots&nbsp;<em>Bonjour</em> et&nbsp;<em>revoir</em>, c'est à dire le mot&nbsp;<em>Bonjour</em> OU le mot&nbsp;<em>revoir</em> : nous devrons alors utiliser la barre verticale |. Ainsi la regex suivante sélectionnera toutes les occurrences de <em>Bonjour</em> et <em>revoir&nbsp;</em>:</p><pre class="prettyprint">Bonjour|revoir</pre><p>Il est aussi possible de sélectionner les occurrences du mot&nbsp;<em>Bonjour</em> se trouvant au début du texte et du mot&nbsp;<em>revoir</em>&nbsp;se trouvant à la fin, ce qui revient à fusionner, en les séparant par une barre verticale,&nbsp;les 2 regex vues dans la sous partie précédente. Voici donc la regex correspondant :</p><pre class="prettyprint">^Bonjour|revoir$</pre><h2 id="3">Les ensembles de caractères</h2><p>Passons maintenant à des regex un peu plus complexes, et beaucoup plus puissantes, en nous attardons sur les ensembles de caractères.</p><h3 id="3-1">Les différents ensembles</h3><p>Maintenant, nous voulons chercher dans notre texte, les mots&nbsp;<em>mots</em>,&nbsp;<em>mats&nbsp;</em>et&nbsp;<em>mits</em>. Nous pourrions très bien utiliser cette regex :</p><pre class="prettyprint">mots|mats|mits</pre><p>Mais il y a plus simple et ce grâce aux ensembles de caractères qui font office, en quelques sortes, de OU en plus courts et plus puissants. Un ensemble de caractère est délimité par des crochets dans lesquels se trouvent les caractères faisant parti du OU. Ainsi, la regex suivante :</p><pre class="prettyprint">m[oai]ts</pre><p>est beaucoup plus succincte que la précédente et sélectionne les mêmes mots. Cette regex peut être expliciter par la phrase suivante : "Sélectionne les parties du texte où il y a un m, suivi d'un o ou d'un a ou d'un i, suivi d'un t, suivi d'un s." Les ensembles de caractères permettent aussi d'exclure des caractères grâce à l'accent circonflexe ^. &nbsp;La regex suivante :</p><pre class="prettyprint">m[^oai]ts</pre><p>sélectionnera, cette fois-ci, seulement le mots&nbsp;<em>mets&nbsp;</em>et peut être explicitée par la phrase suivante : "Sélectionne les parties du texte où il y a un m, suivi d'une lettre qui n'est ni o, ni a, ni i, suivi d'un t, suivi d'un s." Enfin, imaginons que nous voulons sélectionner tous les mots commençant par un m, suivi de n'importe quelle lettre, suivi d'un t, suivi d'un s. La regex qui nous viendrait à l'esprit serait une regex de ce type :</p><pre class="prettyprint">m[abcdefghijklmnopqrstuvwxyz]ts</pre><p>La regex serait donc longue et fastidieuse à écrire, surtout que pour celle-ci, seules les minuscules ont été sélectionnées ! Heureusement, un moyen plus simple existe pour écrire de telles regex : cela s'appelle les intervalles et se note [<em>debut intervalle</em>-<em>fin intervalle</em>]. Voici quelques petites exemples :</p><table class="cke_show_border"><thead><tr><th scope="col">Intervalle</th><th scope="col">Equivalent</th><th scope="col">Traduction</th></tr></thead><tbody><tr><td>[a-z]</td><td>[abcdefghijklmonpqrstuvwxyz]</td><td>Lettres minuscules de a à z</td></tr><tr><td>[A-Z]</td><td>[ABCDEFGHIJKLMNOPQRSTUVWXYZ]</td><td>Lettres majuscules de A à Z</td></tr><tr><td>[0-9]</td><td>[0123456789]</td><td>Chiffres de 0 à 9</td></tr><tr><td>[a-z0-9]</td><td>[abcdefghijklmonpqrstuvwxyz0123456789]</td><td>Lettres minuscules de a à z ou chiffres de 0 à 9</td></tr></tbody></table><p>Reprenons donc notre regex et utilisons les intervalles. Nous obtenons alors :</p><pre class="prettyprint">m[a-z]ts</pre><p>ce qui sélectionne le mot <em>mets&nbsp;</em>en plus des mots&nbsp;<em>mots</em>,&nbsp;<em>mats&nbsp;</em>et&nbsp;<em>mits</em>.</p><h3 id="3-2">Les ensembles préconçus</h3><p>Un ensemble préconçu est une façon très simple de représenter plusieurs intervalles. Voici quelques exemples :</p><table class=" cke_show_border"><thead><tr><th scope="col">Ensemble</th><th scope="col">Equivalent</th></tr></thead><tbody><tr><td>.</td><td>Absolument n'importe quel charactère</td></tr><tr><td>\w</td><td>[a-zA-Z0-9_]</td></tr><tr><td>\d</td><td>[0-9]</td></tr><tr><td>\n</td><td>Un retour à la ligne</td></tr><tr><td>\t</td><td>Une tabulation</td></tr></tbody></table><p>Ainsi, cette regex :</p><pre class="prettyprint">m\wts</pre><p>sélectionnera les mêmes éléments que celle-ci :</p><pre class="prettyprint">m[a-zA-Z0-9_]ts</pre><h2 id="4">Les quantificateurs</h2><p>Nous venons de voir qu'un ensemble de caractères permet de définir de manière très simple les valeurs possible d'un caractère. Mais qu'en est-il si l'on définir les mêmes valeurs possibles pour plusieurs caractères ? Par exemple, si l'on veut sélectionner les parties du texte où il y a un m, suivi d'un a, suivi de 3 fois n'importe quelle lettre minuscule, est-on obligé d'utiliser une regex de ce type :</p><pre class="prettyprint">ma[a-z][a-z][a-z]</pre><p>Non. Il existe une méthode plus simple qui consiste à utiliser les quantificateurs : ce sont des caractères qui indiquent le nombre de répétition du caractère ou de la suite de caractère qui les précèdent. Le quantificateur, dans sa forme explicite, peut s'écrire de 4 façons :</p><ul><li>{min,max} : le nombre de répétition varie entre la valeur minimale et la valeur maximale incluses</li><li>{min,} : le nombre de répétition varie entre la valeur minimale incluse et l'infini</li><li>{,max} : le nombre de répétition varie entre 0 et la valeur maximale incluse</li><li>{nombre} : le nombre de répétition correspond au nombre marqué entre les accolades</li></ul><p>Par exemple, la regex suivante :</p><pre class="prettyprint">[a-zA-Z]{6}</pre><p>permet de sélectionner les parties du texte où il y a 6 lettres consécutives. Celle-ci :</p><pre class="prettyprint">[0-9]{2,4}</pre><p>permet de sélectionner les parties du texte où il y a entre 2 et 4 chiffres consécutifs. Comme pour les ensembles de caractères, il existe aussi des quantificateurs préconçus. En voici la liste :</p><table border="0" class=" cke_show_border"><thead><tr><th scope="col">Quantificateur</th><th scope="col">Traduction</th><th scope="col">Équivalent</th></tr></thead><tbody><tr><td>*</td><td>0 ou plusieurs répétitions</td><td>{0,}</td></tr><tr><td>+</td><td>1 ou plusieurs répétitions</td><td>{1,}</td></tr><tr><td>?</td><td>0 ou 1 répétition</td><td>{,1}</td></tr></tbody></table><h2 id="5">L'échappement</h2><p>Reprenons notre texte et imaginons que l'on veuille y sélectionner les noms de domaine des adresse email&nbsp;<em>contact@johndoe.fr</em> et&nbsp;<em>contact@johndoe.com</em>. La regex qui nous viendrait donc à la tête serait la suivante :</p><pre class="prettyprint">johndoe.[a-z]{2,3}</pre><p>Et malheureusement, ce n'est pas exactement celle-là, car même si les 2 noms de domaine sont bien sélectionnés, la chaîne de caractère&nbsp;<em>johndoe-blo</em><em>&nbsp;</em>l'est aussi.</p><p>Ce problème vient alors du point présent dans la regex car rappelez-vous que le point est un ensemble de caractères préconçus qui représente n'importe quel caractère : il peut représenter un a, un 2 mais aussi un tiret. Pour faire comprendre que le point présent dans la regex est bien un point et non pas un ensemble de caractères, il nous faut échapper le point avec le caractère d'échappement qui est le backslash \. Ainsi la regex correcte est la suivante :<em> </em></p><pre class="prettyprint">johndoe\.[a-z]{2,3}</pre><p>Cet échappement n'est pas seulement valable pour le point, mais pour tous les caractères qui ont, de base, une valeur différente que celle habituelle. En voici la liste : ^ $ \ |&nbsp;{ }&nbsp;[ ]&nbsp;( ) ? # !&nbsp;+ * .</p><h2 id="6">Mise en pratique</h2><p>Maintenant que vous possédez d'assez bonnes bases pour comprendre et utiliser les expressions régulières, il est temps de sortir des simples recherches dans l'éditeur de code et de passer à des cas plus pratiques par l'étude de 2 exemples d'utilisation des regex dans le langage de programmation PHP.</p><h3 id="6-1">Vérifier si un numéro de téléphone est correcte</h3><p>Le premier exemple consiste à vérifier si un numéro de téléphone est correcte.&nbsp;Pour se faire, imaginons que l'on ait créé, dans une page <em>form.html</em>, un formulaire contenant plusieurs champs dont un nommé <em>numero</em>&nbsp;dans lequel l'utilisateur saisirait son numéro de téléphone. Une fois le formulaire complété, l'utilisateur cliquerait sur <em>Valider</em>&nbsp;et enverrait ses données vers une page <em>traitement.php</em>&nbsp;dans laquelle on les vérifierait avant de les entrer dans une base de donnée. La partie nous concernant donc est de vérifier la validité de ce numéro de téléphone.</p><p>Commençons par la regex et admettons qu'elle permette de rechercher les numéros français, commençant par 0 ou +33 et possédant 9 chiffres sans compter le 0 ou +33. Ainsi, voici une écriture possible de celle-ci :</p><pre class="prettyprint">(0|\+33)[1-9]( *[0-9]{2}){4}</pre><p>Peut-être venez vous de remarquer l'apparition de parenthèses. Celles-ci permettent de créer des suites (ou groupe) de caractères et de les stocker en mémoire. Ainsi, si, par exemple, le caractère précédent un quantificateur est en fait une suite de caractère, ce n'est pas le caractère précédent mais la suite de caractère qui sera répétée plusieurs fois. Voici maintenant ce que donne le code PHP entier comprenant la regex :</p><pre class="prettyprint">&lt;?php
+$numero = $_POST['numero'];
+if (preg_match('#(0|\+33)[1-9]( *[0-9]{2}){4}#', $numero)) {
+    echo "Le numéro de téléphone entré est correct.";
+    // On peut ajouter le numéro à la base de donnée
+} else {
+    echo "Le numéro de téléphone entré est incorrect.";
+    // On ne peut pas ajouter le numéro à la base de donnée
+}
+?&gt;</pre><p>Là aussi, 2 remarques sont à faire sur ce code :</p><ul><li>la fonction&nbsp;<a target="_blank" data-cke-saved-href="http://php.net/manual/fr/function.preg-match.php" href="http://php.net/manual/fr/function.preg-match.php">preg_match</a>&nbsp;fait son apparition&nbsp;: celle-ci&nbsp;prend en paramètre la regex ainsi que le texte dans lequel chercher et retourne <em>true</em> si la chaîne a été trouvée dans le texte, <em>false </em>sinon.</li><li>l'ajout d'un dièse # avant et après notre regex. Celui, pas forcément un dièse, permet de délimiter le début et la fin de notre regex, et ainsi, offre la possibilité d'ajouter, après le caractère marquant la fin de la regex, des <a target="_blank" data-cke-saved-href="http://php.net/manual/fr/reference.pcre.pattern.modifiers.php" href="http://php.net/manual/fr/reference.pcre.pattern.modifiers.php">options de recherche</a>&nbsp;comme, par exemple, un&nbsp;<em>i</em>&nbsp;permettant de rendre une regex insensible à la casse</li></ul><h3 id="6-2">Détecter les liens et les rendre cliquable</h3><p>Passons maintenant au second exemple qui est aussi assez pratique et qui consiste à détecter la présence d'url dans un texte et à les convertir en liens cliquables. Imaginons que le contexte soit le même que celui de l'exemple précédent et que, en plus de saisir son &nbsp;numéro de téléphone, l'utilisateur saisisse du texte pouvant contenir des url. Cette fois-ci, la partie nous intéressant consiste à rechercher ces url dans le texte et à les transformer en liens cliquables.</p><p>Pour commencer, définissons la forme que peuvent prendre les url. Celles-ci commenceront par http ou https, seront suivies de ://, suivies des sous-domaines et du nom de domaine, ne contenant que des chiffres, lettres, tirets et points et une extension de 2 à 4 caractères, suivies enfin du chemin d'accès (facultatif) comprenant tous les caractères sauf l'espace. Voici donc une regex possible pour rechercher des url :</p><pre class="prettyprint">https?://[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,4}(/\S*)?</pre><p>où \S signifie tout sauf l'espace et où, petit rappel, le ? permet de rendre facultatif le caractère le précédent. Voici maintenant le code entier :</p><pre class="prettyprint">&lt;?php
+$message = $_POST['message'];
+$message = preg_replace(
+    '#https?://[a-zA-Z0-9-\.]+\.[a-zA-Z]{2,4}(/\S*)?#',
+    '&lt;a href="$0" target="_blank"&gt;$0&lt;/a&gt;',
+    $message
+);
+echo $message;
+?&gt;</pre><p>Comme dans l'exemple précédent, vous avez pu remarquer l'apparition d'une nouvelle fonction, <a target="_blank" data-cke-saved-href="http://php.net/manual/fr/function.preg-replace.php" href="http://php.net/manual/fr/function.preg-replace.php">preg_replace</a>, permettant de remplacer des caractères dans un texte en utilisant les regex. Celle-ci prend en paramètre la regex, la chaîne de remplacement, et le texte contenant les chaînes à remplacer, et retourne le texte une fois les remplacements effectués.</p><p>Vous avez aussi pu remarquer la présence de $0 (appelées référence) dans le second paramètre de cette fonction. Ces références correspondent au texte satisfaisant toute la regex. D'autres références existent comme $1, $2, $3... qui, elles, correspondent au texte satisfaisant la première parenthèse de la regex, la seconde, la troisième... Si vous n'avez pas bien compris le fonctionnement de ces références, je vous conseille de bien regarder les exemples données dans la documentation PHP de cette fonction.</p><p>Le tutoriel touche à sa fin. J'espère qu'il vous aura permis de comprendre le fonctionnement des expressions régulières et d'en acquérir de bonnes bases. N'hésitez pas aussi à me donner votre avis en laissant un commentaire ou en m'envoyant un mail.</p></div>
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <div class="stripes"><h2 id="title-sear">Recherche</h2></div>
+    <p>Voici les recherches relatives à cette page :</p>
+    <ul><li>regex tuto</li><li>tuto regex
+</li><li>tutoriel regex
+</li><li>regex tutorial
+</li><li>regex tutoriel
+</li><li>tuto expression régulière
+</li><li>regex pour les nuls
+</li></ul>
+
+    <div class="stripes"><h2 id="title-opin">Commentaires</h2></div>
+    <p>Qu'en pensez-vous ? Donnez moi votre avis (positif ou négatif) pour que je puisse l'améliorer.</p>
+    <div id="disqus_thread"><iframe id="dsq-app1650" name="dsq-app1650" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 9661px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+
+</div>
+<footer class="row text-center">
+    Réalisé par <a href="https://www.lucaswillems.com/fr/about">Lucas Willems</a>
+</footer>
+<script src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/sdk.js.téléchargement" async="" crossorigin="anonymous"></script><script src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/jquery-2.2.3.min.js.téléchargement"></script>
+
+<script async="async" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/script.min-8126328a05.js.téléchargement"></script>
+
+<script async="async" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/sdk.js(1).téléchargement"></script>
+
+
+
+    <script src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/MathJax.js.téléchargement" id=""></script>
+
+    <script>MathJax.Hub.Config({showMathMenu: false, messageStyle: "none", "HTML-CSS": {linebreaks: {automatic: true}}})</script>
+    <script src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/run_prettify.js.téléchargement"></script>
+
+    <script>$.SyntaxHighlighter.init({'defaultCssClass': 'prettyprint'})</script>
+    <script async="async" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/embed.js.téléchargement"></script>
+
+    <script>
+        var disqus_config = function () {
+            this.page.url = 'https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres';
+        };
+    </script>
+
+<iframe style="display: none;" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/saved_resource(1).html"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" src="./Tutoriel pour maîtriser les expressions régulières (regex)_files/saved_resource(2).html"></iframe></body></html>
