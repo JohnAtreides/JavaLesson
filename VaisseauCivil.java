@@ -10,7 +10,7 @@ public class VaisseauCivil extends Vaisseau {
             this.tonnageMax = 2000;
         } else {
             this.tonnageMax = -1;
-            System.out.println("Wrong Vaisseau type entered. Plz enter \"CARGO\" or \"VAISSEAU-MONDE\".");
+            System.err.println("Wrong Vaisseau type entered. Plz enter \"CARGO\" or \"VAISSEAU-MONDE\".");
         }
     }
 

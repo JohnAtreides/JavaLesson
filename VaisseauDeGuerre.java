@@ -14,7 +14,7 @@ public class VaisseauDeGuerre extends Vaisseau {
             this.tonnageMax = 100;
         } else {
             this.tonnageMax = -1;
-            System.out.println("Wrong Vaisseau type entered. Plz enter \"CHASSEUR\",\"FREGATE\" or \"CROISEUR\".");
+            System.err.println("Wrong Vaisseau type entered. Plz enter \"CHASSEUR\",\"FREGATE\" or \"CROISEUR\".");
         }
     }
 
