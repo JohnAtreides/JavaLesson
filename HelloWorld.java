@@ -26,12 +26,16 @@ public class HelloWorld {
         neptune.diametre=49532;
 
 
-        Vaisseau nouveauVaisseau = new Vaisseau();
-        nouveauVaisseau.type="FREGATE";
-        nouveauVaisseau.nbPassagers=9;
+        Vaisseau chasseur = new VaisseauDeGuerre("CHASSEUR");
+        chasseur.nbPassagers=9;
+        chasseur.blindage=4784;
+        chasseur.resistanceDuBouclier=30;
+
+        Vaisseau vaisseauMonde = new VaisseauCivil();
+
         mars.accueillirVaisseaux(nouveauVaisseau);
-        Vaisseau autreVaisseau = new Vaisseau();
-        autreVaisseau.type="CROISEUR";
+
+        Vaisseau autreVaisseau = new VaisseauDeGuerre("CROISEUR");;
         autreVaisseau.nbPassagers=42;
         mars.accueillirVaisseaux(autreVaisseau);
 
@@ -40,18 +44,16 @@ public class HelloWorld {
         System.out.println("La forme d'une planète est : "+Planete.forme);
 
 
-        VaisseauDeGuerre chasseur = new VaisseauDeGuerre();
-        chasseur.blindage=156;
-        chasseur.resistanceDuBouclier=2;
 
-        VaisseauCivil vaisseauMonde = new VaisseauCivil();
+
+
         vaisseauMonde.blindage=4784;
         vaisseauMonde.resistanceDuBouclier=30;
 
         chasseur.activerBouclier();
         vaisseauMonde.activerBouclier();
 
-        chasseur.attaque(vaisseauMonde, "lasers photoniques", 3);
+        ((VaisseauDeGuerre)chasseur).attaque(vaisseauMonde, "lasers photoniques", 3);
 
         vaisseauMonde.desactiverBouclier();
 

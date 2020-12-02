@@ -9,7 +9,7 @@ public class PlaneteTellurique extends Planete implements Habitable{
         if (vaisseauActuellementAcoste==null) {
             System.out.println("Aucun vaisseau ne s'en va.");
         } else {
-            System.out.println("Un vaisseau de type "+vaisseauActuellementAcoste.type+" doit s'en aller.");
+            System.out.println("Un vaisseau de type "+vaisseauActuellementAcoste.typeDeVaisseau+" doit s'en aller.");
         }
         Vaisseau vaisseauPrecedent = vaisseauActuellementAcoste;
         vaisseauActuellementAcoste = nouveauVaisseau;
