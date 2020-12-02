@@ -14,4 +14,14 @@ public class VaisseauCivil extends Vaisseau {
         }
     }
 
+    int emporterCargaison(int cargaison) {
+        int tonnageLibreRestant = tonnageMax - tonnageActuel;
+        if (cargaison > tonnageLibreRestant) {
+            tonnageActuel = tonnageMax;
+            return cargaison - tonnageLibreRestant;
+        } else {
+            tonnageActuel += cargaison;
+            return 0;
+        }
+    }
 }

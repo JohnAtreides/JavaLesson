@@ -33,7 +33,7 @@ public class VaisseauDeGuerre extends Vaisseau {
         armesDesactivees = true;
     }
 
-    void activerBouclier(){
+    void activerBouclier() {
         System.out.println("Activation du bouclier d'un vaisseau de type "+typeDeVaisseau+".");
         desactiverArmes();
     }
@@ -46,8 +46,8 @@ public class VaisseauDeGuerre extends Vaisseau {
                 return cargaison;
             } else {
                 int tonnagePassagers = 2 * nbPassagers;
-                int tonnageRestant = tonnageMax - tonnageActuel;
-                int tonnageAConsiderer = (tonnagePassagers < tonnageRestant) ? tonnagePassagers : tonnageRestant;
+                int tonnageLibreRestant = tonnageMax - tonnageActuel;
+                int tonnageAConsiderer = (tonnagePassagers < tonnageLibreRestant) ? tonnagePassagers : tonnageLibreRestant;
 
                 if (cargaison > tonnageAConsiderer) {
                     tonnageActuel = tonnageMax;

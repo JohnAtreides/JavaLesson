@@ -1,5 +1,5 @@
 public class HelloWorld {
-    public static void main(String... args){
+    public static void main(String... args) {
 
         Planete mercure=new PlaneteTellurique("Mercure");
         mercure.diametre=4880;
@@ -10,7 +10,7 @@ public class HelloWorld {
         Planete terre=new PlaneteTellurique("Terre");
         terre.diametre=12756;
 
-        PlaneteTellurique mars=new PlaneteTellurique("Mars");
+        Planete mars=new PlaneteTellurique("Mars");
         mars.diametre=6792;
 
         Planete jupiter=new PlaneteGazeuse("Jupiter");
@@ -25,36 +25,46 @@ public class HelloWorld {
         Planete neptune=new PlaneteGazeuse("Neptune");
         neptune.diametre=49532;
 
+        System.out.println(" ");
+        System.out.println("===============================================================");
+        System.out.println(" ");
 
-        Vaisseau chasseur = new VaisseauDeGuerre("CHASSEUR");
-        chasseur.nbPassagers=9;
-        chasseur.blindage=156;
-        chasseur.resistanceDuBouclier=2;
+        Vaisseau chasseurSurTerre = new VaisseauDeGuerre("CHASSEUR");
+        chasseurSurTerre.nbPassagers=9;
+        chasseurSurTerre.blindage=156;
+        chasseurSurTerre.resistanceDuBouclier=2;
+        ((PlaneteTellurique)mars).accueillirVaisseau((Vaisseau)chasseurSurTerre);
+        System.out.println("Le chasseur a rejeté "+((VaisseauDeGuerre)chasseurSurTerre).emporterCargaison(20)+" tonnes.");
+
+
+        Vaisseau fregateSurTerre = new VaisseauDeGuerre("FREGATE");
+        fregateSurTerre.nbPassagers = 100;
+        ((PlaneteTellurique)terre).accueillirVaisseau((Vaisseau)fregateSurTerre);
+        System.out.println("La frégate a rejeté "+((VaisseauDeGuerre)fregateSurTerre).emporterCargaison(45)+" tonnes.");
+        System.out.println("La frégate a rejeté "+((VaisseauDeGuerre)fregateSurTerre).emporterCargaison(12)+" tonnes.");
+
+
+        Vaisseau fregateSurTerre2 = new VaisseauDeGuerre("FREGATE");
+        fregateSurTerre2.nbPassagers = 14;
+        ((PlaneteTellurique)terre).accueillirVaisseau((Vaisseau)fregateSurTerre2);
+        System.out.println("La frégate a rejeté "+((VaisseauDeGuerre)fregateSurTerre2).emporterCargaison(30)+" tonnes.");
 
         Vaisseau vaisseauMonde = new VaisseauCivil("VAISSEAU-MONDE");
         vaisseauMonde.blindage=4784;
         vaisseauMonde.resistanceDuBouclier=30;
+        ((PlaneteTellurique)terre).accueillirVaisseau((Vaisseau)vaisseauMonde);
+        System.out.println("La frégate a rejeté "+((VaisseauCivil)vaisseauMonde).emporterCargaison(1560)+" tonnes.");
+        System.out.println("La frégate a rejeté "+((VaisseauCivil)vaisseauMonde).emporterCargaison(600)+" tonnes.");
 
+
+        /*
         vaisseauMonde.activerBouclier();
         chasseur.activerBouclier();
         ((VaisseauDeGuerre)chasseur).attaque(vaisseauMonde, "laser photonique", 3);
         vaisseauMonde.desactiverBouclier();
 
-        System.out.println("Le Vaisseau-Monde dispose encore de "+vaisseauMonde.resistanceDuBouclier+" minutes de protection grâce à son ouclier.");
-        System.out.println("Le Vaisseau-monde dispose encore d'un blindage de valeur "+vaisseauMonde.blindage+".");
-
-        mars.accueillirVaisseaux(vaisseauMonde);
-        mars.accueillirVaisseaux(chasseur);
-
-        System.out.println("Le nombre d'humains ayant déjà séjourné sur Mars est actuellement de "+mars.totalVisiteurs+".");
-
-        System.out.println("La forme d'une planète est : "+Planete.forme);
-
-
-
-
-
-
-
+        System.out.println("Le Vaisseau-Monde dispose encore de "+vaisseauMonde.resistanceDuBouclier+" minutes de protection grâce à son bouclier.");
+        System.out.println("Le Vaisseau-Monde dispose encore d'un blindage de valeur "+vaisseauMonde.blindage+".");
+         */
     }
 }

@@ -1,3 +1,3 @@
 public interface Habitable {
-    Vaisseau accueillirVaisseaux(Vaisseau vaisseau);
+    Vaisseau accueillirVaisseau(Vaisseau vaisseau);
 }
