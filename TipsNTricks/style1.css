@@ -47,17 +47,16 @@ h5 {
 
 /* <-----------HEADER---------> */
 header {
-    background-image: url("images/coffeeWP.jpg");
-    height: 135px;
+    border-top: 5px rgb(153, 102, 10) outset;
+    border-bottom: 5px rgb(153, 102, 10) outset;
+    background: url("images/coffeePanoramic.jpg");
+    background-size: 100%;
+
+    
+
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border: 5px rgb(153, 102, 10) outset;
-    height: 130px;
 }
 
 #avocation {

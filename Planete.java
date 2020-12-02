@@ -1,4 +1,4 @@
-public class Planete {
+public abstract class Planete {
 
     String nom;
     long diametre;
@@ -10,13 +10,14 @@ public class Planete {
 
     Planete(String nom){
         this.nom=nom;
+        nbPlanetesDecouvertes++;
         System.out.println("Le nombre de planètes découvertes est actuellement de "+nbPlanetesDecouvertes);
     }
-
-
+    
     int revolution(int angle) {
         return angle/360;
     }
+
     int rotation(int angle) {
         return angle/360;
     }
